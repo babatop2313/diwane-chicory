@@ -1,8 +1,9 @@
 import { Routes } from "@angular/router";
-import { MainComponent } from "../../../../shared/layouts/main/main.component";
+
 import { ListeUtilisateursComponent } from "./components/liste-utilisateurs/liste-utilisateurs.component";
 import { DetailsUtilisateursComponent } from "./components/details-utilisateurs/details-utilisateurs.component";
 import { SingleUtilisateurComponent } from "./components/single-utilisateur/single-utilisateur.component";
+import { MainComponent } from "../../../shared/components/layouts/main/main.component";
 
 export const userRoutes: Routes = [
   {

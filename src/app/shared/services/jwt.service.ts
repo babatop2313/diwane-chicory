@@ -25,6 +25,8 @@ export class JwtService {
   //   return decoded.user as User
   // }
 
+  getCurrentUser() : any {
+  }
   // Supprimer le token de sessionStorage
   removeToken(): void {
     sessionStorage.removeItem(this.tokenKey);
