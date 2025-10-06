@@ -7,39 +7,83 @@ import { jwtDecode } from "jwt-decode";
 })
 export class JwtService {
   private tokenKey: string = 'token';
+  private sessionKey: string = 'session';
+  private sessionDetails: string = 'sessionDetails';
 
   constructor() { }
 
   // Récupérer le token depuis sessionStorage
+  // getToken(): string | null {
+  //   return sessionStorage.getItem(this.tokenKey);
+  // }
   getToken(): string | null {
-    return sessionStorage.getItem(this.tokenKey);
+    if (typeof window !== 'undefined') {
+      return sessionStorage.getItem('token');
+    }
+    return null;
   }
+
 
   // Stocker le token dans sessionStorage
   setToken(token: string): void {
     sessionStorage.setItem(this.tokenKey, token);
   }
 
-  // getCurrentUser(): User {
-  //   const decoded: any = this.decodeToken()
-  //   return decoded.user as User
-  // }
-
-  getCurrentUser() : any {
+  getCurrentUser(): any {
+    const decoded: any = this.decodeToken()
+    return decoded
   }
+  getUserName(): any {
+    const decoded: any = this.decodeToken()
+    return decoded.infos?.prenom + " " + decoded.infos?.nom;
+  }
+  // getUserProfil(): any {
+  //   const decoded: any = this.decodeToken()
+  //   return decoded.infos.profil[0].code;
+  // }
+  getUserProfil(): string | null {
+    const decoded: any = this.decodeToken();
+    return decoded?.infos?.profil?.[0]?.code || null;
+  }
+
+  // getUserProfilLibelle(): any {
+  //   const decoded: any = this.decodeToken()
+  //   return decoded.infos?.profil[0].libelle;
+  // }
+  getUserProfilLibelle(): string | null {
+    const decoded: any = this.decodeToken();
+    return decoded?.infos?.profil?.[0]?.libelle || null;
+  }
+
+
+  // getCurrentUser() : any {
+  // }
   // Supprimer le token de sessionStorage
   removeToken(): void {
     sessionStorage.removeItem(this.tokenKey);
+    sessionStorage.removeItem(this.sessionKey);
+    sessionStorage.removeItem(this.sessionDetails);
   }
 
+
   // Décoder le token
-  decodeToken() {
+  // decodeToken() {
+  //   const token = this.getToken();
+  //   if (token) {
+  //     return jwtDecode(token);
+  //   }
+  //   return 'inconnue';
+  // }
+  decodeToken(): any | null {
     const token = this.getToken();
-    if (token) {
-      return jwtDecode(token);
+    try {
+      return token ? jwtDecode(token) : null;
+    } catch (error) {
+      console.error("Token invalide :", error);
+      return null;
     }
-    return 'inconnue';
   }
+
 
   // Vérifier si le token est expiré
   isTokenExpired(): boolean {
@@ -66,4 +110,23 @@ export class JwtService {
     expirationDate.setUTCSeconds(decoded.exp);
     return expirationDate;
   }
+  //session
+  setSession(session: string): void {
+    sessionStorage.setItem(this.sessionKey, session);
+  }
+
+  getSession(): string | null {
+    return sessionStorage.getItem(this.sessionKey);
+  }
+
+
+
+  setSessionDetails(session: any): void {
+    sessionStorage.setItem(this.sessionDetails, session);
+  }
+
+  getSessionDetails(): string | null {
+    return sessionStorage.getItem(this.sessionDetails);
+  }
+
 }
