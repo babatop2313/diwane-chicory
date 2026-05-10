@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/back-office/auth/components/login/login.component.css"],
+  "sourcesContent": [".card{\n  border-radius: 8px;\n  background: #fff;\n  box-shadow: 2px 2px 64px -4px rgba(0, 0, 0, 0.11);\n  padding: 0;\n  margin: 0;\n}\n\n\n.card-body{\n  padding: 20px;\n\n}\n\n.card-title{\n  font-size: 1.5rem;\n  font-weight: 600;\n  margin-bottom: 20px;\n}\n\n\n.btn{\n  border-radius: 8px;\n  padding: 10px 20px;\n  font-size: 1rem;\n  font-weight: 600;\n  margin-top: 20px;\n  background-color: blue;\n  color:white;\n  border: none;\n}\n\n"],
+  "mappings": ";AAAA,CAAC;AACC,iBAAe;AACf,cAAY;AACZ,cAAY,IAAI,IAAI,KAAK,KAAK,KAAK,CAAC,EAAE,CAAC,EAAE,CAAC,EAAE;AAC5C,WAAS;AACT,UAAQ;AACV;AAGA,CAAC;AACC,WAAS;AAEX;AAEA,CAAC;AACC,aAAW;AACX,eAAa;AACb,iBAAe;AACjB;AAGA,CAAC;AACC,iBAAe;AACf,WAAS,KAAK;AACd,aAAW;AACX,eAAa;AACb,cAAY;AACZ,oBAAkB;AAClB,SAAM;AACN,UAAQ;AACV;",
+  "names": []
+}

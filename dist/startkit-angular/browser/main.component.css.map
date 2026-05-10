@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/shared/components/layouts/main/main.component.css"],
+  "sourcesContent": [":host {\n    background-color: #F7FAFC !important;\n}\nbody{\n    background-color: #F7FAFC !important;\n}"],
+  "mappings": ";AAAA;AACI,oBAAkB;AACtB;AACA;AACI,oBAAkB;AACtB;",
+  "names": []
+}

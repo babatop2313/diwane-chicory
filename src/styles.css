@@ -1,0 +1,344 @@
+/* =========================================
+   DCS — DAWAAMOU CHOUKRY SERVICES
+   Global Design System
+   ========================================= */
+
+:root {
+  --dcs-blue-darkest: #060F2B;
+  --dcs-blue-dark:    #0D2450;
+  --dcs-blue:         #1A4FA0;
+  --dcs-blue-mid:     #2563C4;
+  --dcs-blue-light:   #3B82F6;
+  --dcs-blue-pale:    #EBF2FF;
+
+  --dcs-silver:       #B8C4D4;
+  --dcs-silver-light: #D8E2EF;
+  --dcs-silver-pale:  #F0F4FA;
+
+  --dcs-gold-dark:    #A07C18;
+  --dcs-gold:         #C9A227;
+  --dcs-gold-light:   #F0C040;
+  --dcs-gold-pale:    #FFF8E1;
+
+  --dcs-white:        #FFFFFF;
+  --dcs-off-white:    #F8FAFC;
+  --dcs-black:        #060F2B;
+  --dcs-grey-dark:    #2D3748;
+  --dcs-grey:         #4A5568;
+  --dcs-grey-mid:     #6B7A99;
+
+  --color-primary:    var(--dcs-blue);
+  --color-secondary:  var(--dcs-gold);
+  --color-text:       var(--dcs-grey-dark);
+  --color-text-light: var(--dcs-grey-mid);
+  --color-border:     var(--dcs-silver-light);
+
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body:    'Urbanist', sans-serif;
+
+  --section-py:    100px;
+  --section-py-sm: 60px;
+
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-xl:   32px;
+  --radius-full: 9999px;
+
+  --shadow-sm:  0 2px 8px rgba(6,15,43,0.08);
+  --shadow-md:  0 8px 24px rgba(6,15,43,0.12);
+  --shadow-lg:  0 16px 48px rgba(6,15,43,0.16);
+  --shadow-xl:  0 24px 64px rgba(6,15,43,0.20);
+
+  --transition:      all 0.3s ease;
+  --transition-slow: all 0.5s ease;
+
+  --z-navbar: 1000;
+  --z-float:  900;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--dcs-white);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; transition: var(--transition); }
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--dcs-black);
+}
+
+/* Layout */
+.section    { padding: var(--section-py) 0; }
+.section-sm { padding: var(--section-py-sm) 0; }
+
+.container-dcs {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Backgrounds */
+.bg-dark-blue { background: linear-gradient(135deg, var(--dcs-blue-darkest), var(--dcs-blue-dark)); }
+.bg-blue      { background: linear-gradient(135deg, var(--dcs-blue-dark), var(--dcs-blue)); }
+.bg-off-white { background-color: var(--dcs-off-white); }
+.bg-light     { background-color: var(--dcs-silver-pale); }
+
+/* Text helpers */
+.text-white        { color: var(--dcs-white) !important; }
+.text-gold         { color: var(--dcs-gold); }
+.text-blue         { color: var(--dcs-blue); }
+.text-muted-light  { color: rgba(255,255,255,0.7); }
+
+/* Gradient text — global, not scoped to .section-title */
+.highlight,
+.section-title .highlight {
+  background: linear-gradient(135deg, var(--dcs-blue), var(--dcs-blue-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.highlight-gold,
+.section-title .highlight-gold {
+  background: linear-gradient(135deg, var(--dcs-gold-dark), var(--dcs-gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section Badge */
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--dcs-blue-pale);
+  color: var(--dcs-blue);
+  border: 1px solid rgba(26,79,160,0.2);
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.section-badge-dark {
+  background: rgba(201,162,39,0.15);
+  border-color: rgba(201,162,39,0.3);
+  color: var(--dcs-gold);
+}
+
+/* Section Title */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: var(--dcs-black);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+.section-header          { margin-bottom: 60px; }
+.section-header.centered { text-align: center; }
+.section-header.centered .section-subtitle { margin: 0 auto; }
+
+.title-divider {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--dcs-blue), var(--dcs-gold));
+  border-radius: var(--radius-full);
+  margin: 16px 0;
+}
+.title-divider.centered { margin: 16px auto; }
+
+/* Shared Page Hero (all inner pages) */
+.page-hero {
+  padding: 80px 0 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.5" fill="rgba(255,255,255,0.04)"/></pattern></defs><rect width="100" height="100" fill="url(%23g)"/></svg>');
+  pointer-events: none;
+}
+.page-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.page-hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: var(--dcs-white);
+  margin: 16px 0 20px;
+  line-height: 1.1;
+}
+.page-hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.75);
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+/* Buttons */
+.btn-dcs {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  text-decoration: none;
+}
+.btn-dcs-primary {
+  background: linear-gradient(135deg, var(--dcs-blue), var(--dcs-blue-mid));
+  color: var(--dcs-white);
+  border-color: var(--dcs-blue);
+  box-shadow: 0 4px 20px rgba(26,79,160,0.35);
+}
+.btn-dcs-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(26,79,160,0.45);
+  color: var(--dcs-white);
+}
+.btn-dcs-gold {
+  background: linear-gradient(135deg, var(--dcs-gold-dark), var(--dcs-gold));
+  color: var(--dcs-white);
+  box-shadow: 0 4px 20px rgba(201,162,39,0.35);
+}
+.btn-dcs-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(201,162,39,0.45);
+  color: var(--dcs-white);
+}
+.btn-dcs-outline {
+  background: transparent;
+  color: var(--dcs-white);
+  border-color: rgba(255,255,255,0.5);
+}
+.btn-dcs-outline:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: var(--dcs-white);
+  color: var(--dcs-white);
+  transform: translateY(-2px);
+}
+.btn-dcs-outline-blue {
+  background: transparent;
+  color: var(--dcs-blue);
+  border-color: var(--dcs-blue);
+}
+.btn-dcs-outline-blue:hover {
+  background: var(--dcs-blue);
+  color: var(--dcs-white);
+  transform: translateY(-2px);
+}
+
+/* Forms */
+.form-dcs .form-group { margin-bottom: 20px; }
+.form-dcs label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dcs-grey);
+  margin-bottom: 8px;
+}
+.form-dcs input,
+.form-dcs textarea,
+.form-dcs select {
+  width: 100%;
+  background: var(--dcs-white);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--dcs-black);
+  transition: var(--transition);
+  outline: none;
+  appearance: none;
+}
+.form-dcs input:focus,
+.form-dcs textarea:focus,
+.form-dcs select:focus {
+  border-color: var(--dcs-blue);
+  box-shadow: 0 0 0 4px rgba(26,79,160,0.1);
+}
+.form-dcs textarea { resize: vertical; min-height: 140px; }
+
+/* Scroll Reveal Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+@keyframes pulse-ring {
+  0%   { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* Responsive helpers */
+@media (max-width: 640px) {
+  :root { --section-py: 60px; --section-py-sm: 40px; }
+}

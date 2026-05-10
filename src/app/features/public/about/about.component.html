@@ -1,0 +1,189 @@
+<!-- PAGE HERO -->
+<section class="page-hero bg-dark-blue">
+  <div class="container-dcs page-hero-content">
+    <span class="section-badge section-badge-dark">
+      <i class="fa-solid fa-info-circle"></i>
+      {{ translation.isFr() ? 'Notre Histoire' : 'Our Story' }}
+    </span>
+    <h1 class="page-hero-title">
+      {{ translation.isFr() ? 'À ' : 'About ' }}<span class="highlight-gold">{{ translation.isFr() ? 'Propos de DCS' : 'DCS' }}</span>
+    </h1>
+    <p class="page-hero-subtitle">
+      {{ translation.isFr()
+        ? "Découvrez l'histoire, la mission et les valeurs de Dawaamou Choukry Services — votre partenaire local d'excellence à Dakar."
+        : "Discover the history, mission and values of Dawaamou Choukry Services — your local excellence partner in Dakar." }}
+    </p>
+  </div>
+</section>
+
+<!-- MISSION SECTION -->
+<section class="section mission-section">
+  <div class="container-dcs">
+    <div class="mission-inner">
+      <!-- Left -->
+      <div class="mission-left reveal-left">
+        <span class="section-badge">
+          <i class="fa-solid fa-bullseye"></i>
+          {{ translation.isFr() ? 'Notre Mission' : 'Our Mission' }}
+        </span>
+        <h2 class="section-title">
+          {{ translation.isFr() ? "L'Excellence " : 'Excellence ' }}<span class="highlight">{{ translation.isFr() ? 'au Service' : 'at the Heart' }}</span><br>{{ translation.isFr() ? 'de Votre Vision' : 'of Your Vision' }}
+        </h2>
+        <div class="title-divider"></div>
+        <p class="mission-desc">
+          {{ translation.isFr()
+            ? "Fondée à Guédiawaye en 2018, DCS est née de la vision d'un entrepreneur passionné : démontrer que le Sénégal dispose des talents et du savoir-faire pour offrir des services de niveau international. Aujourd'hui, DCS est un partenaire de confiance pour des centaines d'entreprises, institutions et particuliers à Dakar et au Sénégal."
+            : "Founded in Guédiawaye in 2018, DCS was born from the vision of a passionate entrepreneur: to demonstrate that Senegal has the talent and expertise to offer international-level services. Today, DCS is a trusted partner for hundreds of companies, institutions and individuals in Dakar and Senegal." }}
+        </p>
+        <div class="mission-stats">
+          @for (s of stats; track s.value) {
+            <div class="mission-stat">
+              <span class="mission-stat-value">{{ s.value }}</span>
+              <span class="mission-stat-label">{{ statLabel(s) }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Right: quote card -->
+      <div class="mission-right reveal-right">
+        <div class="founder-quote-card">
+          <i class="fa-solid fa-quote-left quote-icon-deco"></i>
+          <p class="founder-quote-text">
+            {{ translation.isFr()
+              ? "Notre ambition est simple : être le meilleur partenaire local du Sénégal, allier l'authenticité de notre culture à une exigence d'excellence internationale. Chaque projet DCS est une promesse d'excellence."
+              : "Our ambition is simple: to be Senegal's best local partner, combining the authenticity of our culture with an international standard of excellence. Every DCS project is a promise of excellence." }}
+          </p>
+          <div class="founder-info">
+            <div class="founder-avatar">CN</div>
+            <div>
+              <span class="founder-name">Cheikh Tidiane Ndiaye</span>
+              <span class="founder-role">{{ translation.isFr() ? 'Fondateur & DG, DCS' : 'Founder & CEO, DCS' }}</span>
+            </div>
+          </div>
+          <div class="location-badge">
+            <i class="fa-solid fa-location-dot"></i>
+            Guédiawaye, Dakar, Sénégal
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES SECTION -->
+<section class="section bg-off-white values-section">
+  <div class="container-dcs">
+    <div class="section-header centered reveal">
+      <span class="section-badge">
+        <i class="fa-solid fa-star"></i>
+        {{ translation.isFr() ? 'Nos Valeurs' : 'Our Values' }}
+      </span>
+      <h2 class="section-title">
+        {{ translation.isFr() ? 'Ce qui nous ' : 'What ' }}<span class="highlight">{{ translation.isFr() ? 'définit' : 'defines us' }}</span>
+      </h2>
+      <div class="title-divider centered"></div>
+    </div>
+    <div class="values-grid">
+      @for (v of values; track v.titleFr) {
+        <div class="value-card reveal" [style.--v-color]="v.color">
+          <div class="value-card-icon" [style.background]="v.color">
+            <i class="fa-solid" [class]="v.icon"></i>
+          </div>
+          <h3 class="value-card-title">{{ getValueTitle(v) }}</h3>
+          <p class="value-card-desc">{{ getValueDesc(v) }}</p>
+          <div class="value-card-accent" [style.background]="v.color"></div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE SECTION -->
+<section class="section bg-dark-blue timeline-section">
+  <div class="container-dcs">
+    <div class="section-header centered reveal">
+      <span class="section-badge section-badge-dark">
+        <i class="fa-solid fa-timeline"></i>
+        {{ translation.isFr() ? 'Notre parcours' : 'Our journey' }}
+      </span>
+      <h2 class="section-title text-white">
+        {{ translation.isFr() ? '8 ans d\'' : '8 Years of ' }}<span class="highlight-gold">{{ translation.isFr() ? 'excellence' : 'Excellence' }}</span>
+      </h2>
+      <div class="title-divider centered"></div>
+    </div>
+
+    <div class="timeline">
+      @for (item of timeline; track item.year; let i = $index; let isEven = $even) {
+        <div class="timeline-item" [class.timeline-right]="isEven" [class.timeline-left]="!isEven">
+          <div class="timeline-content reveal">
+            <div class="timeline-icon" [style.background]="'linear-gradient(135deg, var(--dcs-blue), var(--dcs-blue-mid))'">
+              <i class="fa-solid" [class]="item.icon"></i>
+            </div>
+            <span class="timeline-year">{{ item.year }}</span>
+            <h3 class="timeline-title">{{ getTimelineTitle(item) }}</h3>
+            <p class="timeline-desc">{{ getTimelineDesc(item) }}</p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+      }
+      <div class="timeline-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM SECTION -->
+<section class="section team-section">
+  <div class="container-dcs">
+    <div class="section-header centered reveal">
+      <span class="section-badge">
+        <i class="fa-solid fa-users"></i>
+        {{ translation.isFr() ? 'Notre Équipe' : 'Our Team' }}
+      </span>
+      <h2 class="section-title">
+        {{ translation.isFr() ? 'Les ' : 'The ' }}<span class="highlight">{{ translation.isFr() ? 'Visages de DCS' : 'Faces of DCS' }}</span>
+      </h2>
+      <div class="title-divider centered"></div>
+      <p class="section-subtitle">
+        {{ translation.isFr()
+          ? "Une équipe passionnée, compétente et dévouée à votre satisfaction."
+          : "A passionate, skilled team dedicated to your satisfaction." }}
+      </p>
+    </div>
+
+    <div class="team-grid">
+      @for (m of team; track m.name) {
+        <div class="team-card reveal">
+          <div class="team-avatar" [style.background]="m.color">{{ m.initials }}</div>
+          <h3 class="team-name">{{ m.name }}</h3>
+          <span class="team-role">{{ getMemberRole(m) }}</span>
+          <p class="team-desc">{{ getMemberDesc(m) }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="section bg-blue">
+  <div class="container-dcs cta-about reveal">
+    <h2 class="section-title text-white">
+      {{ translation.isFr() ? 'Travaillons ' : "Let's work " }}<span class="highlight-gold">{{ translation.isFr() ? 'ensemble !' : 'together!' }}</span>
+    </h2>
+    <p class="cta-about-sub">
+      {{ translation.isFr()
+        ? "Rejoignez les centaines d'entreprises qui font confiance à DCS pour leurs projets."
+        : "Join the hundreds of companies that trust DCS for their projects." }}
+    </p>
+    <div class="cta-about-btns">
+      <a href="https://wa.me/221784324753" target="_blank" class="btn-dcs btn-dcs-gold">
+        <i class="fa-brands fa-whatsapp"></i>
+        WhatsApp
+      </a>
+      <a routerLink="/contact" class="btn-dcs btn-dcs-outline">
+        <i class="fa-solid fa-paper-plane"></i>
+        {{ translation.isFr() ? 'Nous Contacter' : 'Contact Us' }}
+      </a>
+    </div>
+  </div>
+</section>

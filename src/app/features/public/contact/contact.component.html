@@ -1,0 +1,233 @@
+<!-- PAGE HERO -->
+<section class="page-hero bg-dark-blue">
+  <div class="container-dcs page-hero-content">
+    <span class="section-badge section-badge-dark">
+      <i class="fa-solid fa-paper-plane"></i>
+      {{ translation.isFr() ? 'Parlons de votre projet' : "Let's talk about your project" }}
+    </span>
+    <h1 class="page-hero-title">
+      {{ translation.isFr() ? 'Contactez-' : 'Contact ' }}<span class="highlight-gold">{{ translation.isFr() ? 'Nous' : 'Us' }}</span>
+    </h1>
+    <p class="page-hero-subtitle">
+      {{ translation.isFr()
+        ? "Nous sommes disponibles pour répondre à toutes vos questions et donner vie à votre projet."
+        : "We are available to answer all your questions and bring your project to life." }}
+    </p>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="section contact-section bg-off-white">
+  <div class="container-dcs">
+    <div class="contact-inner">
+
+      <!-- LEFT: Coordonnées -->
+      <div class="contact-left reveal-left">
+        <div class="contact-info-card">
+          <h2 class="contact-info-title">
+            {{ translation.isFr() ? 'Nos Coordonnées' : 'Our Contact Info' }}
+          </h2>
+          <ul class="contact-info-list">
+            @for (info of contactInfos; track info.labelFr) {
+              <li class="contact-info-item">
+                <div class="contact-info-icon">
+                  <i [class]="(info.iconClass ?? 'fa-solid') + ' ' + info.icon"></i>
+                </div>
+                <div class="contact-info-body">
+                  <span class="contact-info-label">{{ getInfoLabel(info) }}</span>
+                  @if (info.link) {
+                    <a [href]="info.link" target="_blank" class="contact-info-value contact-link">{{ getInfoValue(info) }}</a>
+                  } @else {
+                    <span class="contact-info-value">{{ getInfoValue(info) }}</span>
+                  }
+                </div>
+              </li>
+            }
+          </ul>
+
+          <!-- Social links -->
+          <div class="contact-social">
+            <span class="contact-social-label">{{ translation.isFr() ? 'Suivez-nous' : 'Follow us' }}</span>
+            <div class="contact-social-links">
+              @for (s of socials; track s.label) {
+                <a [href]="s.href" target="_blank" class="social-btn" [attr.aria-label]="s.label">
+                  <i class="fa-brands" [class]="s.icon"></i>
+                </a>
+              }
+            </div>
+          </div>
+
+          <!-- WhatsApp quick CTA -->
+          <div class="wa-quick-card">
+            <div class="wa-quick-icon">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <div class="wa-quick-text">
+              <span class="wa-quick-title">{{ translation.isFr() ? 'Réponse rapide garantie' : 'Quick response guaranteed' }}</span>
+              <span class="wa-quick-sub">{{ translation.isFr() ? 'Discutez directement sur WhatsApp' : 'Chat directly on WhatsApp' }}</span>
+            </div>
+            <a href="https://wa.me/221784324753" target="_blank" class="btn-dcs btn-dcs-gold wa-quick-btn">
+              <i class="fa-brands fa-whatsapp"></i>
+              {{ translation.isFr() ? 'Discuter' : 'Chat now' }}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form or success -->
+      <div class="contact-right reveal-right">
+        <div class="contact-form-card">
+
+          @if (!submitted()) {
+            <!-- Form -->
+            <div class="form-card-header">
+              <h2 class="form-card-title">{{ translation.isFr() ? 'Envoyez-nous un Message' : 'Send us a Message' }}</h2>
+              <p class="form-card-sub">{{ translation.isFr() ? 'Réponse sous 24h garantie' : 'Response within 24h guaranteed' }}</p>
+            </div>
+
+            <form class="form-dcs" (ngSubmit)="onSubmit()" #contactForm="ngForm">
+              <!-- Row 1: Name + Email -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">{{ translation.isFr() ? 'Nom complet *' : 'Full name *' }}</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    [(ngModel)]="form.name"
+                    [placeholder]="translation.isFr() ? 'Votre nom' : 'Your name'"
+                    required />
+                </div>
+                <div class="form-group">
+                  <label for="email">{{ translation.isFr() ? 'Email' : 'Email' }}</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    [(ngModel)]="form.email"
+                    [placeholder]="translation.isFr() ? 'votre@email.com' : 'your@email.com'" />
+                </div>
+              </div>
+
+              <!-- Row 2: Phone + Service -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="phone">{{ translation.isFr() ? 'Téléphone' : 'Phone' }}</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    [(ngModel)]="form.phone"
+                    [placeholder]="translation.isFr() ? '+221 XX XXX XX XX' : '+221 XX XXX XX XX'" />
+                </div>
+                <div class="form-group">
+                  <label for="service">{{ translation.isFr() ? 'Service souhaité' : 'Desired service' }}</label>
+                  <select id="service" name="service" [(ngModel)]="form.service">
+                    <option value="">{{ translation.isFr() ? '-- Choisir --' : '-- Choose --' }}</option>
+                    @for (opt of serviceOptions; track opt.valueFr) {
+                      <option [value]="getServiceLabel(opt)">{{ getServiceLabel(opt) }}</option>
+                    }
+                  </select>
+                </div>
+              </div>
+
+              <!-- Message -->
+              <div class="form-group">
+                <label for="message">{{ translation.isFr() ? 'Votre message *' : 'Your message *' }}</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  [(ngModel)]="form.message"
+                  [placeholder]="translation.isFr() ? 'Décrivez votre projet ou votre demande...' : 'Describe your project or request...'"
+                  rows="5"
+                  required></textarea>
+              </div>
+
+              <!-- Error state -->
+              @if (error()) {
+                <div class="form-error">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  {{ translation.isFr() ? 'Veuillez remplir les champs obligatoires (*).' : 'Please fill in the required fields (*).' }}
+                </div>
+              }
+
+              <!-- Submit -->
+              <button type="submit" class="btn-dcs btn-dcs-primary form-submit" [disabled]="sending()">
+                @if (sending()) {
+                  <i class="fa-solid fa-spinner fa-spin"></i>
+                  {{ translation.isFr() ? 'Envoi en cours...' : 'Sending...' }}
+                } @else {
+                  <i class="fa-brands fa-whatsapp"></i>
+                  {{ translation.isFr() ? 'Envoyer via WhatsApp' : 'Send via WhatsApp' }}
+                }
+              </button>
+
+              <p class="form-privacy">
+                <i class="fa-solid fa-lock"></i>
+                {{ translation.isFr()
+                  ? "Vos données sont protégées et ne sont jamais partagées avec des tiers."
+                  : "Your data is protected and never shared with third parties." }}
+              </p>
+            </form>
+
+          } @else {
+            <!-- SUCCESS STATE -->
+            <div class="form-success">
+              <div class="success-icon">
+                <i class="fa-solid fa-circle-check"></i>
+              </div>
+              <h3 class="success-title">{{ translation.isFr() ? 'Message envoyé !' : 'Message sent!' }}</h3>
+              <p class="success-text">
+                {{ translation.isFr()
+                  ? "Votre demande a été envoyée via WhatsApp. Notre équipe vous répondra dans les plus brefs délais."
+                  : "Your request has been sent via WhatsApp. Our team will respond as soon as possible." }}
+              </p>
+              <div class="success-btns">
+                <button type="button" class="btn-dcs btn-dcs-outline-blue" (click)="resetForm()">
+                  <i class="fa-solid fa-rotate-left"></i>
+                  {{ translation.isFr() ? 'Nouveau message' : 'New message' }}
+                </button>
+                <a routerLink="/accueil" class="btn-dcs btn-dcs-primary">
+                  <i class="fa-solid fa-house"></i>
+                  {{ translation.isFr() ? 'Retour à l\'accueil' : 'Back to home' }}
+                </a>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION SECTION -->
+<section class="section location-section">
+  <div class="container-dcs">
+    <div class="section-header reveal">
+      <span class="section-badge">
+        <i class="fa-solid fa-map-location-dot"></i>
+        {{ translation.isFr() ? 'Notre localisation' : 'Our location' }}
+      </span>
+      <h2 class="section-title">
+        {{ translation.isFr() ? 'Retrouvez-nous à ' : 'Find us in ' }}<span class="highlight">{{ translation.isFr() ? 'Guédiawaye' : 'Guédiawaye' }}</span>
+      </h2>
+    </div>
+
+    <div class="map-placeholder reveal">
+      <div class="map-overlay-content">
+        <div class="map-pin">
+          <i class="fa-solid fa-location-dot"></i>
+        </div>
+        <h3 class="map-label">DCS — Dawaamou Choukry Services</h3>
+        <p class="map-address">Guédiawaye, Dakar, Sénégal</p>
+        <a
+          href="https://maps.google.com/?q=Guédiawaye,Dakar,Senegal"
+          target="_blank"
+          class="btn-dcs btn-dcs-primary">
+          <i class="fa-solid fa-map-location-dot"></i>
+          {{ translation.isFr() ? 'Ouvrir dans Google Maps' : 'Open in Google Maps' }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

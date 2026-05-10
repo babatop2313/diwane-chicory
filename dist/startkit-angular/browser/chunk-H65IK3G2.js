@@ -1,0 +1,96 @@
+// src/app/shared/data/services.data.ts
+var DCS_SERVICES = [
+  {
+    id: "coffee",
+    slug: "cafe-touba",
+    icon: "fa-mug-hot",
+    titleFr: "DCS Coffee Shop",
+    titleEn: "DCS Coffee Shop",
+    subtitleFr: "Caf\xE9 Touba Authentique",
+    subtitleEn: "Authentic Caf\xE9 Touba",
+    descriptionFr: "Vivez l'exp\xE9rience unique du Caf\xE9 Touba Dawaamou Choukry, un symbole de la culture s\xE9n\xE9galaise. Nous proposons un service premium pour vos \xE9v\xE9nements, s\xE9minaires et c\xE9r\xE9monies, avec l'ar\xF4me envo\xFBtant du vrai caf\xE9 Touba.",
+    descriptionEn: "Experience the unique Dawaamou Choukry Caf\xE9 Touba, a symbol of Senegalese culture. We offer premium service for your events, seminars, and ceremonies, with the captivating aroma of authentic Caf\xE9 Touba.",
+    features: [
+      { icon: "fa-leaf", labelFr: "Caf\xE9 Touba authentique", labelEn: "Authentic Caf\xE9 Touba" },
+      { icon: "fa-star", labelFr: "Service VIP \xE9v\xE9nements", labelEn: "VIP event service" },
+      { icon: "fa-users", labelFr: "S\xE9minaires & c\xE9r\xE9monies", labelEn: "Seminars & ceremonies" },
+      { icon: "fa-crown", labelFr: "Exp\xE9rience premium", labelEn: "Premium experience" },
+      { icon: "fa-truck", labelFr: "Livraison & mobilit\xE9", labelEn: "Delivery & mobility" },
+      { icon: "fa-gift", labelFr: "Coffrets cadeaux", labelEn: "Gift boxes" }
+    ],
+    image: "assets/images/coffee-service.jpg",
+    color: "#C9A227",
+    gradient: "linear-gradient(135deg, #3D1C02, #8B4513)"
+  },
+  {
+    id: "audiovisuel",
+    slug: "audiovisuel",
+    icon: "fa-video",
+    titleFr: "DCS Audiovisuel & TV",
+    titleEn: "DCS Audiovisual & TV",
+    subtitleFr: "Production & Captation Professionnelle",
+    subtitleEn: "Professional Production & Capture",
+    descriptionFr: "DCS Audiovisuel met \xE0 votre service une expertise compl\xE8te en production vid\xE9o 4K, montage professionnel et r\xE9gie live. Nous cr\xE9ons des contenus percutants pour les marques, institutions et grands \xE9v\xE9nements.",
+    descriptionEn: "DCS Audiovisual puts at your service complete expertise in 4K video production, professional editing, and live broadcast. We create impactful content for brands, institutions, and major events.",
+    features: [
+      { icon: "fa-film", labelFr: "Captation vid\xE9o 4K", labelEn: "4K video capture" },
+      { icon: "fa-cut", labelFr: "Montage professionnel", labelEn: "Professional editing" },
+      { icon: "fa-broadcast-tower", labelFr: "R\xE9gie live", labelEn: "Live broadcast" },
+      { icon: "fa-building", labelFr: "Production institutionnelle", labelEn: "Institutional production" },
+      { icon: "fa-photo-film", labelFr: "Contenu pour r\xE9seaux sociaux", labelEn: "Social media content" },
+      { icon: "fa-microphone", labelFr: "Son & \xE9clairage", labelEn: "Sound & lighting" }
+    ],
+    image: "assets/images/audiovisual-service.jpg",
+    color: "#1A4FA0",
+    gradient: "linear-gradient(135deg, #0D2450, #1A4FA0)"
+  },
+  {
+    id: "decoration",
+    slug: "decoration-personnalisation",
+    icon: "fa-couch",
+    titleFr: "DCS D\xE9coration & Personnalisation",
+    titleEn: "DCS Decoration & Customization",
+    subtitleFr: "Cr\xE9ez des espaces qui vous ressemblent",
+    subtitleEn: "Create spaces that reflect you",
+    descriptionFr: "Notre \xE9quipe de designers cr\xE9e des univers uniques adapt\xE9s \xE0 vos espaces et \xE9v\xE9nements. De la d\xE9coration int\xE9rieure au branding d'espace en passant par la mise en sc\xE8ne \xE9v\xE9nementielle, DCS sublime chaque lieu.",
+    descriptionEn: "Our team of designers creates unique environments tailored to your spaces and events. From interior decoration to space branding and event staging, DCS enhances every venue.",
+    features: [
+      { icon: "fa-paint-brush", labelFr: "D\xE9coration d'int\xE9rieur", labelEn: "Interior decoration" },
+      { icon: "fa-tag", labelFr: "Branding d'espaces", labelEn: "Space branding" },
+      { icon: "fa-magic", labelFr: "Personnalisation d'objets", labelEn: "Object customization" },
+      { icon: "fa-calendar-check", labelFr: "Mise en sc\xE8ne \xE9v\xE9nementielle", labelEn: "Event staging" },
+      { icon: "fa-ruler-combined", labelFr: "Am\xE9nagement sur mesure", labelEn: "Custom layout" },
+      { icon: "fa-lightbulb", labelFr: "Conseil en design", labelEn: "Design consulting" }
+    ],
+    image: "assets/images/decoration-service.jpg",
+    color: "#8B5CF6",
+    gradient: "linear-gradient(135deg, #4C1D95, #7C3AED)"
+  },
+  {
+    id: "printing",
+    slug: "impression-design",
+    icon: "fa-print",
+    titleFr: "DCS Printing & Design",
+    titleEn: "DCS Printing & Design",
+    subtitleFr: "Votre image, notre expertise",
+    subtitleEn: "Your image, our expertise",
+    descriptionFr: "De l'impression textile \xE0 la signal\xE9tique, DCS propose une gamme compl\xE8te de solutions d'impression et de design graphique pour valoriser votre marque. T-shirts, mugs, casquettes, supports de communication.",
+    descriptionEn: "From textile printing to signage, DCS offers a complete range of printing and graphic design solutions to enhance your brand. T-shirts, mugs, caps, communication materials.",
+    features: [
+      { icon: "fa-shirt", labelFr: "T-shirts personnalis\xE9s", labelEn: "Custom T-shirts" },
+      { icon: "fa-mug-saucer", labelFr: "Mugs & accessoires", labelEn: "Mugs & accessories" },
+      { icon: "fa-hat-cowboy", labelFr: "Casquettes & textiles", labelEn: "Caps & textiles" },
+      { icon: "fa-sign-hanging", labelFr: "Signal\xE9tique", labelEn: "Signage" },
+      { icon: "fa-file-image", labelFr: "Supports com'", labelEn: "Communication materials" },
+      { icon: "fa-palette", labelFr: "Design graphique", labelEn: "Graphic design" }
+    ],
+    image: "assets/images/printing-service.jpg",
+    color: "#10B981",
+    gradient: "linear-gradient(135deg, #064E3B, #059669)"
+  }
+];
+
+export {
+  DCS_SERVICES
+};
+//# sourceMappingURL=chunk-H65IK3G2.js.map

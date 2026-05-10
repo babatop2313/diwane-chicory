@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/shared/services/translation.service.ts"],
+  "sourcesContent": ["import { Injectable, signal, computed } from '@angular/core';\n\nexport type Lang = 'fr' | 'en';\n\n@Injectable({ providedIn: 'root' })\nexport class TranslationService {\n  currentLang = signal<Lang>('fr');\n\n  toggleLang(): void {\n    this.currentLang.update(l => l === 'fr' ? 'en' : 'fr');\n  }\n\n  setLang(lang: Lang): void {\n    this.currentLang.set(lang);\n  }\n\n  isFr = computed(() => this.currentLang() === 'fr');\n\n  t(fr: string, en: string): string {\n    return this.currentLang() === 'fr' ? fr : en;\n  }\n}\n"],
+  "mappings": ";;;;;;;AAKM,IAAO,qBAAP,MAAO,oBAAkB;EAC7B,cAAc,OAAa,IAAI;EAE/B,aAAU;AACR,SAAK,YAAY,OAAO,OAAK,MAAM,OAAO,OAAO,IAAI;EACvD;EAEA,QAAQ,MAAU;AAChB,SAAK,YAAY,IAAI,IAAI;EAC3B;EAEA,OAAO,SAAS,MAAM,KAAK,YAAW,MAAO,IAAI;EAEjD,EAAE,IAAY,IAAU;AACtB,WAAO,KAAK,YAAW,MAAO,OAAO,KAAK;EAC5C;;qCAfW,qBAAkB;EAAA;4EAAlB,qBAAkB,SAAlB,oBAAkB,WAAA,YADL,OAAM,CAAA;;",
+  "names": []
+}

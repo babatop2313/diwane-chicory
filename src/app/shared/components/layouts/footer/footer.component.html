@@ -1,0 +1,54 @@
+<footer class="footer-dcs">
+  <div class="footer-top">
+    <div class="container-dcs">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo-box"><span>DCS</span></div>
+          <p class="footer-tagline">{{ translation.isFr() ? "L'Excellence au Service de Votre Vision." : 'Excellence at the Service of Your Vision.' }}</p>
+          <div class="footer-social">
+            <a href="https://facebook.com" target="_blank" class="s-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://instagram.com/DCS_Services" target="_blank" class="s-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://linkedin.com" target="_blank" class="s-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://wa.me/221784324753" target="_blank" class="s-btn s-wa" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">{{ translation.isFr() ? 'Nos Services' : 'Our Services' }}</h4>
+          <ul class="footer-links">
+            <li><a routerLink="/services">{{ translation.isFr() ? 'Café Touba' : 'Café Touba' }}</a></li>
+            <li><a routerLink="/services">{{ translation.isFr() ? 'Audiovisuel & TV' : 'Audiovisual & TV' }}</a></li>
+            <li><a routerLink="/services">{{ translation.isFr() ? 'Décoration & Personnalisation' : 'Decoration & Customization' }}</a></li>
+            <li><a routerLink="/services">{{ translation.isFr() ? 'Printing & Design' : 'Printing & Design' }}</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a routerLink="/accueil">{{ translation.isFr() ? 'Accueil' : 'Home' }}</a></li>
+            <li><a routerLink="/a-propos">{{ translation.isFr() ? 'À Propos' : 'About Us' }}</a></li>
+            <li><a routerLink="/portfolio">{{ translation.isFr() ? 'Réalisations' : 'Portfolio' }}</a></li>
+            <li><a routerLink="/contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Contact</h4>
+          <ul class="footer-contact">
+            <li><i class="fa-solid fa-location-dot"></i><span>Guédiawaye, Dakar, Sénégal</span></li>
+            <li><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/221784324753">+221 78 432 47 53</a></li>
+            <li><i class="fa-solid fa-envelope"></i><a href="mailto:contact@dcservices.sn">contact&#64;dcservices.sn</a></li>
+            <li><i class="fa-solid fa-globe"></i><a href="https://dcservices.sn" target="_blank">dcservices.sn</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container-dcs footer-bottom-inner">
+      <p>&copy; {{ year }} DCS — Dawaamou Choukry Services. {{ translation.isFr() ? 'Tous droits réservés.' : 'All rights reserved.' }}</p>
+      <p><i class="fa-solid fa-medal text-gold"></i> {{ translation.isFr() ? "Partenaire Local d'Excellence — Dakar 2026" : 'Local Excellence Partner — Dakar 2026' }}</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,139 @@
+<!-- PAGE HERO -->
+<section class="page-hero bg-dark-blue">
+  <div class="container-dcs page-hero-content">
+    <span class="section-badge section-badge-dark">
+      <i class="fa-solid fa-images"></i>
+      {{ translation.isFr() ? 'Nos Réalisations' : 'Our Work' }}
+    </span>
+    <h1 class="page-hero-title">
+      {{ translation.isFr() ? 'Notre ' : 'Our ' }}<span class="highlight-gold">{{ translation.isFr() ? 'Portfolio' : 'Portfolio' }}</span>
+    </h1>
+    <p class="page-hero-subtitle">
+      {{ translation.isFr()
+        ? "Découvrez quelques-unes de nos réalisations à travers nos quatre pôles d'expertise."
+        : "Discover some of our achievements across our four areas of expertise." }}
+    </p>
+  </div>
+</section>
+
+<!-- PORTFOLIO CONTENT -->
+<section class="section portfolio-section bg-off-white">
+  <div class="container-dcs">
+
+    <!-- Filter bar -->
+    <div class="filter-bar reveal">
+      @for (f of filters; track f.category) {
+        <button
+          class="filter-btn"
+          [class.active]="activeCategory() === f.category"
+          (click)="setFilter(f.category)"
+          type="button">
+          <i class="fa-solid" [class]="f.icon"></i>
+          {{ getFilterLabel(f) }}
+          <span class="filter-count">{{ countByCategory(f.category) }}</span>
+        </button>
+      }
+    </div>
+
+    <!-- Portfolio grid -->
+    @if (filteredItems().length > 0) {
+      <div class="portfolio-grid">
+        @for (item of filteredItems(); track item.id) {
+          <div class="portfolio-item reveal" (click)="openLightbox(item)">
+            <!-- Placeholder visual -->
+            <div class="portfolio-img-wrap">
+              <div class="portfolio-placeholder" [class]="getCategoryClass(item.category)">
+                <div class="placeholder-icon">
+                  <i class="fa-solid" [class]="getCategoryIcon(item.category)"></i>
+                </div>
+                <span class="placeholder-label">DCS</span>
+              </div>
+              <!-- Overlay -->
+              <div class="portfolio-overlay">
+                <div class="overlay-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <span class="overlay-category">{{ getItemCategory(item) }}</span>
+                <h3 class="overlay-title">{{ getItemTitle(item) }}</h3>
+              </div>
+            </div>
+            <!-- Card body -->
+            <div class="portfolio-body">
+              <span class="portfolio-category-badge" [class]="getCategoryClass(item.category)">
+                <i class="fa-solid" [class]="getCategoryIcon(item.category)"></i>
+                {{ getItemCategory(item) }}
+              </span>
+              <h3 class="portfolio-title">{{ getItemTitle(item) }}</h3>
+              @if (getItemDescription(item)) {
+                <p class="portfolio-desc">{{ getItemDescription(item) }}</p>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <!-- Empty state -->
+      <div class="portfolio-empty reveal">
+        <i class="fa-solid fa-folder-open"></i>
+        <p>{{ translation.isFr() ? 'Aucun projet dans cette catégorie.' : 'No projects in this category.' }}</p>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+@if (lightboxItem()) {
+  <div class="lightbox-overlay" (click)="closeLightbox()">
+    <div class="lightbox-content" (click)="$event.stopPropagation()">
+      <button class="lightbox-close" (click)="closeLightbox()" type="button">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="lightbox-img">
+        <div class="lightbox-placeholder" [class]="getCategoryClass(lightboxItem()!.category)">
+          <i class="fa-solid" [class]="getCategoryIcon(lightboxItem()!.category)"></i>
+          <span>DCS</span>
+        </div>
+      </div>
+
+      <div class="lightbox-info">
+        <span class="portfolio-category-badge" [class]="getCategoryClass(lightboxItem()!.category)">
+          <i class="fa-solid" [class]="getCategoryIcon(lightboxItem()!.category)"></i>
+          {{ getItemCategory(lightboxItem()!) }}
+        </span>
+        <h2 class="lightbox-title">{{ getItemTitle(lightboxItem()!) }}</h2>
+        <p class="lightbox-desc">{{ getItemDescription(lightboxItem()!) }}</p>
+
+        <a
+          [href]="'https://wa.me/221784324753?text=' + encodeURIComponent(translation.isFr() ? 'Bonjour, je suis intéressé par un projet similaire à: ' + getItemTitle(lightboxItem()!) : 'Hello, I am interested in a project similar to: ' + getItemTitle(lightboxItem()!))"
+          target="_blank"
+          class="btn-dcs btn-dcs-gold lightbox-cta">
+          <i class="fa-brands fa-whatsapp"></i>
+          {{ translation.isFr() ? 'Projet similaire ?' : 'Similar project?' }}
+        </a>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- CTA SECTION -->
+<section class="section bg-blue">
+  <div class="container-dcs cta-portfolio reveal">
+    <h2 class="section-title text-white">
+      {{ translation.isFr() ? 'Votre projet, ' : 'Your project, ' }}<span class="highlight-gold">{{ translation.isFr() ? 'notre prochaine réalisation' : 'our next achievement' }}</span>
+    </h2>
+    <p class="cta-portfolio-sub">
+      {{ translation.isFr()
+        ? "Rejoignez la liste de nos clients satisfaits et donnez vie à votre vision avec DCS."
+        : "Join our list of satisfied clients and bring your vision to life with DCS." }}
+    </p>
+    <div class="cta-portfolio-btns">
+      <a routerLink="/contact" class="btn-dcs btn-dcs-gold">
+        <i class="fa-solid fa-paper-plane"></i>
+        {{ translation.isFr() ? 'Démarrer un projet' : 'Start a project' }}
+      </a>
+      <a href="https://wa.me/221784324753" target="_blank" class="btn-dcs btn-dcs-outline">
+        <i class="fa-brands fa-whatsapp"></i>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>

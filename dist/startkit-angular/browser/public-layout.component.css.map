@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["angular:styles/component:css;360a3b3d83f6355471988b83dfa382e4b8825eb48bf68c248d512619eedd8ff5;/Users/macbook/Desktop/Projects_pro/Ame/Apps/startkit-angular/src/app/shared/components/layouts/public-layout/public-layout.component.ts"],
+  "sourcesContent": ["\n    .main-content { padding-top: 72px; }\n  "],
+  "mappings": ";AACI,CAAC;AAAe,eAAa;AAAM;",
+  "names": []
+}
