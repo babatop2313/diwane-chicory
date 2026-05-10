@@ -1,0 +1,133 @@
+<!-- PAGE HERO -->
+<section class="page-hero bg-dark-blue">
+  <div class="container-dcs">
+    <div class="page-hero-content reveal">
+      <span class="section-badge section-badge-dark">
+        <i class="fa-solid fa-images"></i>
+        {{ translation.isFr() ? 'Nos Réalisations' : 'Our Work' }}
+      </span>
+      <h1 class="page-hero-title">
+        {{ translation.isFr() ? 'Portfolio' : 'Portfolio' }}
+        <span class="highlight-gold">DCS</span>
+      </h1>
+      <p class="page-hero-subtitle">
+        {{ translation.isFr()
+          ? 'Découvrez nos meilleures réalisations à travers nos quatre domaines d\'expertise. Chaque projet témoigne de notre engagement pour l\'excellence.'
+          : 'Discover our best work across our four areas of expertise. Every project reflects our commitment to excellence.' }}
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO SECTION -->
+<section class="section portfolio-section">
+  <div class="container-dcs">
+
+    <!-- Filter Bar -->
+    <div class="portfolio-filters reveal">
+      @for (f of filters; track f.value) {
+        <button class="filter-btn"
+                [class.active]="activeCategory() === f.value"
+                (click)="setFilter(f.value)">
+          <i class="fa-solid {{ f.icon }}"></i>
+          {{ getFilterLabel(f) }}
+          <span class="filter-count">
+            {{ f.value === 'all' ? allItems.length : countByCategory(f.value) }}
+          </span>
+        </button>
+      }
+    </div>
+
+    <!-- Grid -->
+    <div class="portfolio-grid">
+      @for (item of filteredItems(); track item.id; let i = $index) {
+        <div class="portfolio-item reveal" [style.animation-delay]="(i * 0.05) + 's'" (click)="openLightbox(item)">
+          <div class="portfolio-item-img">
+            <div class="portfolio-placeholder" [class]="'placeholder-' + item.category">
+              <i class="fa-solid" [class]="getCategoryIcon(item.category)"></i>
+            </div>
+            <div class="portfolio-overlay">
+              <i class="fa-solid fa-magnifying-glass-plus overlay-icon"></i>
+              <div class="overlay-info">
+                <span class="overlay-category">{{ getItemCategory(item) }}</span>
+                <h4 class="overlay-title">{{ getItemTitle(item) }}</h4>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-item-body">
+            <span class="portfolio-cat-badge cat-{{ item.category }}">{{ getItemCategory(item) }}</span>
+            <h3 class="portfolio-item-title">{{ getItemTitle(item) }}</h3>
+            @if (getItemDescription(item)) {
+              <p class="portfolio-item-desc">{{ getItemDescription(item) }}</p>
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    @if (filteredItems().length === 0) {
+      <div class="portfolio-empty">
+        <i class="fa-solid fa-search"></i>
+        <p>{{ translation.isFr() ? 'Aucune réalisation dans cette catégorie.' : 'No work in this category.' }}</p>
+      </div>
+    }
+
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+@if (lightboxItem()) {
+  <div class="lightbox-overlay" (click)="closeLightbox()">
+    <div class="lightbox-content" (click)="$event.stopPropagation()">
+      <button class="lightbox-close" (click)="closeLightbox()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="lightbox-img-wrap">
+        <div class="lightbox-placeholder" [class]="'placeholder-' + lightboxItem()!.category">
+          <i class="fa-solid" [class]="getCategoryIcon(lightboxItem()!.category)"></i>
+        </div>
+      </div>
+      <div class="lightbox-info">
+        <span class="portfolio-cat-badge cat-{{ lightboxItem()!.category }}">
+          {{ getItemCategory(lightboxItem()!) }}
+        </span>
+        <h2 class="lightbox-title">{{ getItemTitle(lightboxItem()!) }}</h2>
+        @if (getItemDescription(lightboxItem()!)) {
+          <p class="lightbox-desc">{{ getItemDescription(lightboxItem()!) }}</p>
+        }
+        <a href="https://wa.me/221784324753" target="_blank" class="btn-dcs btn-dcs-primary">
+          <i class="fa-brands fa-whatsapp"></i>
+          {{ translation.isFr() ? 'Commander ce service' : 'Order this service' }}
+        </a>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- CTA -->
+<section class="section bg-off-white portfolio-cta-section">
+  <div class="container-dcs">
+    <div class="portfolio-cta-inner reveal">
+      <h2 class="section-title">
+        {{ translation.isFr() ? 'Votre Projet,' : 'Your Project,' }}
+        <span class="highlight">{{ translation.isFr() ? 'Notre Prochaine Réalisation' : 'Our Next Creation' }}</span>
+      </h2>
+      <div class="title-divider centered"></div>
+      <p class="section-subtitle" style="margin: 0 auto 32px;">
+        {{ translation.isFr()
+          ? 'Prêt à créer quelque chose d\'exceptionnel ? Contactez DCS et discutons de votre projet.'
+          : 'Ready to create something exceptional? Contact DCS and let\'s discuss your project.' }}
+      </p>
+      <div class="portfolio-cta-btns">
+        <a routerLink="/contact" class="btn-dcs btn-dcs-primary">
+          <i class="fa-solid fa-paper-plane"></i>
+          {{ translation.isFr() ? 'Démarrer un Projet' : 'Start a Project' }}
+        </a>
+        <a href="https://wa.me/221784324753" target="_blank" class="btn-dcs btn-dcs-outline-blue">
+          <i class="fa-brands fa-whatsapp"></i>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

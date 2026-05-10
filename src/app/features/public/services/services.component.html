@@ -1,0 +1,150 @@
+<!-- PAGE HERO -->
+<section class="page-hero bg-dark-blue">
+  <div class="container-dcs">
+    <div class="page-hero-content reveal">
+      <span class="section-badge section-badge-dark">
+        <i class="fa-solid fa-grid-2"></i>
+        {{ translation.isFr() ? 'Nos Expertises' : 'Our Expertise' }}
+      </span>
+      <h1 class="page-hero-title">
+        {{ translation.isFr() ? 'Nos' : 'Our' }}
+        <span class="highlight-gold">{{ translation.isFr() ? 'Services Premium' : 'Premium Services' }}</span>
+      </h1>
+      <p class="page-hero-subtitle">
+        {{ translation.isFr()
+          ? 'Quatre domaines d\'expertise, une seule passion : l\'excellence. DCS vous accompagne dans tous vos projets avec le savoir-faire qui a fait notre réputation.'
+          : 'Four areas of expertise, one passion: excellence. DCS supports you in all your projects with the know-how that has built our reputation.' }}
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES TABS -->
+<section class="section services-page-section">
+  <div class="container-dcs">
+    <!-- Tab Nav -->
+    <div class="services-tab-nav reveal">
+      @for (service of services; track service.id) {
+        <button class="tab-btn"
+                [class.active]="activeServiceId() === service.id"
+                (click)="setActive(service.id)"
+                [style.--tab-color]="service.color">
+          <i class="fa-solid {{ service.icon }}"></i>
+          <span>{{ getTitle(service) }}</span>
+        </button>
+      }
+    </div>
+
+    <!-- Active Service Detail -->
+    <div class="service-detail reveal">
+      <div class="service-detail-hero" [style.background]="activeService.gradient">
+        <div class="service-detail-hero-content">
+          <div class="service-detail-icon">
+            <i class="fa-solid {{ activeService.icon }}"></i>
+          </div>
+          <div>
+            <h2 class="service-detail-title">{{ getTitle(activeService) }}</h2>
+            <p class="service-detail-subtitle">{{ getSubtitle(activeService) }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-detail-body">
+        <div class="service-detail-left">
+          <h3 class="service-detail-heading">
+            {{ translation.isFr() ? 'Notre expertise' : 'Our expertise' }}
+          </h3>
+          <p class="service-detail-desc">{{ getDescription(activeService) }}</p>
+
+          <div class="service-detail-ctas">
+            <a href="https://wa.me/221784324753" target="_blank" class="btn-dcs btn-dcs-primary">
+              <i class="fa-brands fa-whatsapp"></i>
+              {{ translation.isFr() ? 'Demander un devis' : 'Request a quote' }}
+            </a>
+            <a routerLink="/contact" class="btn-dcs btn-dcs-outline-blue">
+              <i class="fa-solid fa-envelope"></i>
+              {{ translation.isFr() ? 'Nous contacter' : 'Contact us' }}
+            </a>
+          </div>
+        </div>
+
+        <div class="service-detail-right">
+          <h3 class="service-detail-heading">
+            {{ translation.isFr() ? 'Ce que nous proposons' : 'What we offer' }}
+          </h3>
+          <div class="service-features-grid">
+            @for (feat of activeService.features; track feat.labelFr) {
+              <div class="feature-item">
+                <div class="feature-icon" [style.background]="activeService.gradient">
+                  <i class="fa-solid {{ feat.icon }}"></i>
+                </div>
+                <span class="feature-label">{{ getFeatureLabel(feat) }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALL SERVICES GRID -->
+<section class="section bg-off-white all-services-section">
+  <div class="container-dcs">
+    <div class="section-header centered">
+      <h2 class="section-title reveal">
+        {{ translation.isFr() ? 'Tous nos' : 'All Our' }}
+        <span class="highlight">{{ translation.isFr() ? 'Services' : 'Services' }}</span>
+      </h2>
+      <div class="title-divider centered reveal"></div>
+    </div>
+
+    <div class="all-services-grid">
+      @for (service of services; track service.id; let i = $index) {
+        <div class="all-service-card reveal" [style.animation-delay]="(i * 0.1) + 's'" (click)="setActive(service.id)">
+          <div class="all-service-top" [style.background]="service.gradient">
+            <i class="fa-solid {{ service.icon }}"></i>
+          </div>
+          <div class="all-service-body">
+            <h3>{{ getTitle(service) }}</h3>
+            <p>{{ getSubtitle(service) }}</p>
+            <button class="all-service-cta" [style.color]="service.color">
+              {{ translation.isFr() ? 'Voir le détail' : 'See details' }}
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="services-cta-band bg-blue">
+  <div class="container-dcs">
+    <div class="services-cta-inner reveal">
+      <div>
+        <h2 class="services-cta-title">
+          {{ translation.isFr()
+            ? 'Un projet en tête ? Parlons-en !'
+            : 'Have a project in mind? Let\'s talk!' }}
+        </h2>
+        <p class="services-cta-sub">
+          {{ translation.isFr()
+            ? 'Notre équipe est disponible 7j/7 pour étudier vos besoins et vous proposer une solution sur mesure.'
+            : 'Our team is available 7 days a week to study your needs and offer you a tailor-made solution.' }}
+        </p>
+      </div>
+      <div class="services-cta-actions">
+        <a href="https://wa.me/221784324753" target="_blank" class="btn-dcs btn-dcs-gold">
+          <i class="fa-brands fa-whatsapp"></i>
+          WhatsApp
+        </a>
+        <a routerLink="/contact" class="btn-dcs btn-dcs-outline">
+          <i class="fa-solid fa-paper-plane"></i>
+          {{ translation.isFr() ? 'Formulaire' : 'Contact Form' }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

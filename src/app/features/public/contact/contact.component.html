@@ -1,0 +1,273 @@
+<!-- PAGE HERO -->
+<section class="page-hero bg-dark-blue">
+  <div class="container-dcs">
+    <div class="page-hero-content reveal">
+      <span class="section-badge section-badge-dark">
+        <i class="fa-solid fa-paper-plane"></i>
+        {{ translation.isFr() ? 'Contactez-nous' : 'Contact Us' }}
+      </span>
+      <h1 class="page-hero-title">
+        {{ translation.isFr() ? 'Parlons de' : 'Let\'s Talk About' }}<br>
+        <span class="highlight-gold">{{ translation.isFr() ? 'Votre Projet' : 'Your Project' }}</span>
+      </h1>
+      <p class="page-hero-subtitle">
+        {{ translation.isFr()
+          ? 'Notre équipe est disponible pour répondre à vos questions et vous accompagner dans la réalisation de vos projets.'
+          : 'Our team is available to answer your questions and support you in bringing your projects to life.' }}
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="section contact-section">
+  <div class="container-dcs">
+    <div class="contact-grid">
+
+      <!-- LEFT: Contact Info -->
+      <div class="contact-info-col reveal-left">
+        <h2 class="contact-info-title">
+          {{ translation.isFr() ? 'Nos Coordonnées' : 'Our Contact Details' }}
+        </h2>
+        <p class="contact-info-subtitle">
+          {{ translation.isFr()
+            ? 'Choisissez le canal de communication qui vous convient le mieux.'
+            : 'Choose the communication channel that suits you best.' }}
+        </p>
+
+        <div class="contact-info-list">
+          @for (info of contactInfos; track info.titleFr) {
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <i class="fa-solid {{ info.icon }}"></i>
+              </div>
+              <div class="contact-info-text">
+                <span class="contact-info-label">{{ getInfoTitle(info) }}</span>
+                @if (info.link) {
+                  <a [href]="info.link" [target]="info.link.startsWith('http') ? '_blank' : '_self'" class="contact-info-value contact-link">
+                    {{ getInfoValue(info) }}
+                  </a>
+                } @else {
+                  <span class="contact-info-value">{{ getInfoValue(info) }}</span>
+                }
+              </div>
+            </div>
+          }
+        </div>
+
+        <div class="contact-social">
+          <h4 class="contact-social-title">{{ translation.isFr() ? 'Suivez-nous' : 'Follow us' }}</h4>
+          <div class="contact-social-links">
+            <a href="https://facebook.com" target="_blank" class="contact-social-btn" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://instagram.com/DCS_Services" target="_blank" class="contact-social-btn" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="contact-social-btn" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://wa.me/221784324753" target="_blank" class="contact-social-btn contact-social-wa" aria-label="WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick WhatsApp CTA -->
+        <a href="https://wa.me/221784324753" target="_blank" class="whatsapp-quick-cta">
+          <div class="wa-quick-icon">
+            <i class="fa-brands fa-whatsapp"></i>
+          </div>
+          <div class="wa-quick-text">
+            <strong>{{ translation.isFr() ? 'Chat instantané' : 'Instant Chat' }}</strong>
+            <span>{{ translation.isFr() ? 'Réponse rapide garantie' : 'Quick response guaranteed' }}</span>
+          </div>
+          <i class="fa-solid fa-arrow-right wa-quick-arrow"></i>
+        </a>
+      </div>
+
+      <!-- RIGHT: Contact Form -->
+      <div class="contact-form-col reveal-right">
+        @if (!submitted()) {
+          <div class="contact-form-card">
+            <div class="contact-form-header">
+              <h3 class="contact-form-title">
+                {{ translation.isFr() ? 'Envoyer un Message' : 'Send a Message' }}
+              </h3>
+              <p class="contact-form-subtitle">
+                {{ translation.isFr()
+                  ? 'Remplissez ce formulaire et nous vous répondrons dans les 24h.'
+                  : 'Fill in this form and we will get back to you within 24 hours.' }}
+              </p>
+            </div>
+
+            <form class="form-dcs" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">
+                    {{ translation.isFr() ? 'Nom Complet' : 'Full Name' }}
+                    <span class="required">*</span>
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    [(ngModel)]="form.name"
+                    name="name"
+                    [placeholder]="translation.isFr() ? 'Votre nom complet' : 'Your full name'"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">
+                    Email
+                    <span class="required">*</span>
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    [(ngModel)]="form.email"
+                    name="email"
+                    [placeholder]="translation.isFr() ? 'votre@email.com' : 'your@email.com'"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="phone">
+                    {{ translation.isFr() ? 'Téléphone / WhatsApp' : 'Phone / WhatsApp' }}
+                  </label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    [(ngModel)]="form.phone"
+                    name="phone"
+                    placeholder="+221 XX XXX XX XX"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="service">
+                    {{ translation.isFr() ? 'Service Concerné' : 'Service of Interest' }}
+                  </label>
+                  <select id="service" [(ngModel)]="form.service" name="service">
+                    <option value="">{{ translation.isFr() ? '— Choisir un service —' : '— Choose a service —' }}</option>
+                    @for (s of services; track s.value) {
+                      <option [value]="s.value">{{ getServiceLabel(s) }}</option>
+                    }
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="message">
+                  {{ translation.isFr() ? 'Votre Message' : 'Your Message' }}
+                  <span class="required">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  [(ngModel)]="form.message"
+                  name="message"
+                  [placeholder]="translation.isFr()
+                    ? 'Décrivez votre projet, vos besoins, votre budget estimatif...'
+                    : 'Describe your project, your needs, your estimated budget...'"
+                  required
+                ></textarea>
+              </div>
+
+              @if (error()) {
+                <div class="form-error-msg">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  {{ translation.isFr()
+                    ? 'Veuillez remplir tous les champs obligatoires.'
+                    : 'Please fill in all required fields.' }}
+                </div>
+              }
+
+              <button
+                type="submit"
+                class="btn-dcs btn-dcs-primary contact-submit-btn"
+                [disabled]="sending()"
+              >
+                @if (sending()) {
+                  <i class="fa-solid fa-spinner fa-spin"></i>
+                  {{ translation.isFr() ? 'Envoi en cours...' : 'Sending...' }}
+                } @else {
+                  <i class="fa-solid fa-paper-plane"></i>
+                  {{ translation.isFr() ? 'Envoyer le Message' : 'Send Message' }}
+                }
+              </button>
+
+              <p class="form-note">
+                <i class="fa-solid fa-lock"></i>
+                {{ translation.isFr()
+                  ? 'Vos données sont traitées de manière confidentielle.'
+                  : 'Your data is handled confidentially.' }}
+              </p>
+            </form>
+          </div>
+        } @else {
+          <!-- SUCCESS STATE -->
+          <div class="contact-success-card">
+            <div class="success-icon">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="success-title">
+              {{ translation.isFr() ? 'Message Reçu !' : 'Message Received!' }}
+            </h3>
+            <p class="success-text">
+              {{ translation.isFr()
+                ? 'Merci de nous avoir contactés. Votre message a été transmis via WhatsApp et notre équipe vous répondra dans les plus brefs délais.'
+                : 'Thank you for contacting us. Your message has been forwarded via WhatsApp and our team will respond as soon as possible.' }}
+            </p>
+            <div class="success-actions">
+              <button class="btn-dcs btn-dcs-outline-blue" (click)="resetForm()">
+                <i class="fa-solid fa-rotate-left"></i>
+                {{ translation.isFr() ? 'Nouveau Message' : 'New Message' }}
+              </button>
+              <a href="https://wa.me/221784324753" target="_blank" class="btn-dcs btn-dcs-primary">
+                <i class="fa-brands fa-whatsapp"></i>
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        }
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MAP / LOCATION SECTION -->
+<section class="section bg-off-white location-section">
+  <div class="container-dcs">
+    <div class="section-header centered">
+      <span class="section-badge reveal">
+        <i class="fa-solid fa-map-location-dot"></i>
+        {{ translation.isFr() ? 'Où Nous Trouver' : 'Where to Find Us' }}
+      </span>
+      <h2 class="section-title reveal">
+        {{ translation.isFr() ? 'Notre' : 'Our' }}
+        <span class="highlight">{{ translation.isFr() ? 'Localisation' : 'Location' }}</span>
+      </h2>
+      <div class="title-divider centered reveal"></div>
+    </div>
+
+    <div class="location-card reveal">
+      <div class="location-map-placeholder">
+        <i class="fa-solid fa-map-location-dot"></i>
+        <div class="location-map-text">
+          <strong>DCS — Dawaamou Choukry Services</strong>
+          <span>Guédiawaye, Dakar, Sénégal</span>
+          <a href="https://maps.google.com/?q=Guédiawaye+Dakar+Sénégal" target="_blank" class="btn-dcs btn-dcs-primary location-map-btn">
+            <i class="fa-solid fa-diamond-turn-right"></i>
+            {{ translation.isFr() ? 'Obtenir l\'itinéraire' : 'Get Directions' }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

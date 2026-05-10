@@ -1,0 +1,211 @@
+<!-- PAGE HERO -->
+<section class="page-hero bg-dark-blue">
+  <div class="container-dcs">
+    <div class="page-hero-content reveal">
+      <span class="section-badge section-badge-dark">
+        <i class="fa-solid fa-building"></i>
+        {{ translation.isFr() ? 'Notre Histoire' : 'Our Story' }}
+      </span>
+      <h1 class="page-hero-title">
+        {{ translation.isFr() ? 'À Propos de' : 'About' }}
+        <span class="highlight-gold">DCS</span>
+      </h1>
+      <p class="page-hero-subtitle">
+        {{ translation.isFr()
+          ? 'Dawaamou Choukry Services : une entreprise née à Guédiawaye, construite sur des valeurs d\'excellence et portée par une passion pour le service.'
+          : 'Dawaamou Choukry Services: a company born in Guédiawaye, built on values of excellence and driven by a passion for service.' }}
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION SECTION -->
+<section class="section mission-section">
+  <div class="container-dcs">
+    <div class="mission-inner">
+      <div class="mission-content reveal-left">
+        <span class="section-badge">
+          <i class="fa-solid fa-bullseye"></i>
+          {{ translation.isFr() ? 'Notre Mission' : 'Our Mission' }}
+        </span>
+        <h2 class="section-title">
+          {{ translation.isFr() ? 'L\'Excellence' : 'Excellence' }}<br>
+          <span class="highlight">{{ translation.isFr() ? 'au Quotidien' : 'Every Day' }}</span>
+        </h2>
+        <div class="title-divider"></div>
+        <p class="section-subtitle">
+          {{ translation.isFr()
+            ? 'DCS Dawaamou Choukry Services est une entreprise sénégalaise dédiée à la fourniture de services premium qui allient qualité internationale et authenticité locale. Nous croyons que l\'excellence n\'est pas un luxe réservé à quelques-uns, mais un standard que chaque client mérite.'
+            : 'DCS Dawaamou Choukry Services is a Senegalese company dedicated to providing premium services that combine international quality with local authenticity. We believe that excellence is not a luxury reserved for a few, but a standard that every client deserves.' }}
+        </p>
+        <div class="mission-stats">
+          <div class="mission-stat">
+            <span class="mission-stat-val">5+</span>
+            <span class="mission-stat-label">{{ translation.isFr() ? 'Années d\'expertise' : 'Years of expertise' }}</span>
+          </div>
+          <div class="mission-stat">
+            <span class="mission-stat-val">200+</span>
+            <span class="mission-stat-label">{{ translation.isFr() ? 'Projets livrés' : 'Projects delivered' }}</span>
+          </div>
+          <div class="mission-stat">
+            <span class="mission-stat-val">150+</span>
+            <span class="mission-stat-label">{{ translation.isFr() ? 'Clients fidèles' : 'Loyal clients' }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="mission-visual reveal-right">
+        <div class="mission-card">
+          <div class="mission-card-header bg-blue">
+            <i class="fa-solid fa-quote-left"></i>
+          </div>
+          <div class="mission-card-body">
+            <blockquote>
+              {{ translation.isFr()
+                ? '"Notre nom, Dawaamou Choukry, signifie la gratitude permanente. C\'est l\'âme de DCS : servir avec gratitude, créer avec passion, et exceller avec humilité."'
+                : '"Our name, Dawaamou Choukry, means eternal gratitude. This is the soul of DCS: serve with gratitude, create with passion, and excel with humility."' }}
+            </blockquote>
+            <div class="mission-quote-author">
+              <div class="mission-quote-avatar">CT</div>
+              <div>
+                <strong>Cheikh Tidiane Diallo</strong>
+                <span>{{ translation.isFr() ? 'Fondateur, DCS' : 'Founder, DCS' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mission-location-badge">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Guédiawaye, Dakar, Sénégal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES SECTION -->
+<section class="section bg-off-white values-section">
+  <div class="container-dcs">
+    <div class="section-header centered">
+      <span class="section-badge reveal">
+        <i class="fa-solid fa-gem"></i>
+        {{ translation.isFr() ? 'Nos Valeurs' : 'Our Values' }}
+      </span>
+      <h2 class="section-title reveal">
+        {{ translation.isFr() ? 'Ce Qui Nous' : 'What' }}
+        <span class="highlight">{{ translation.isFr() ? 'Définit' : 'Defines Us' }}</span>
+      </h2>
+      <div class="title-divider centered reveal"></div>
+    </div>
+
+    <div class="values-grid">
+      @for (value of values; track value.titleFr; let i = $index) {
+        <div class="value-card reveal" [style.animation-delay]="(i * 0.1) + 's'">
+          <div class="value-icon" [style.background]="value.color + '20'" [style.border-color]="value.color + '40'">
+            <i class="fa-solid {{ value.icon }}" [style.color]="value.color"></i>
+          </div>
+          <h3 class="value-title">{{ getValueTitle(value) }}</h3>
+          <p class="value-desc">{{ getValueDesc(value) }}</p>
+          <div class="value-line" [style.background]="value.color"></div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE SECTION -->
+<section class="section timeline-section bg-dark-blue">
+  <div class="container-dcs">
+    <div class="section-header centered">
+      <span class="section-badge section-badge-dark reveal">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        {{ translation.isFr() ? 'Notre Parcours' : 'Our Journey' }}
+      </span>
+      <h2 class="section-title text-white reveal">
+        {{ translation.isFr() ? 'Notre' : 'Our' }}
+        <span class="highlight-gold">{{ translation.isFr() ? 'Évolution' : 'Evolution' }}</span>
+      </h2>
+      <div class="title-divider centered reveal"></div>
+    </div>
+
+    <div class="timeline">
+      @for (item of timeline; track item.year; let i = $index; let even = $even) {
+        <div class="timeline-item" [class.timeline-right]="even" [class.timeline-left]="!even">
+          <div class="timeline-content reveal" [class.reveal-left]="even" [class.reveal-right]="!even">
+            <span class="timeline-year">{{ item.year }}</span>
+            <h3 class="timeline-title">{{ getTimelineTitle(item) }}</h3>
+            <p class="timeline-desc">{{ getTimelineDesc(item) }}</p>
+          </div>
+          <div class="timeline-dot">
+            <div class="timeline-dot-inner"></div>
+          </div>
+        </div>
+      }
+      <div class="timeline-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM SECTION -->
+<section class="section team-section">
+  <div class="container-dcs">
+    <div class="section-header centered">
+      <span class="section-badge reveal">
+        <i class="fa-solid fa-users"></i>
+        {{ translation.isFr() ? 'Notre Équipe' : 'Our Team' }}
+      </span>
+      <h2 class="section-title reveal">
+        {{ translation.isFr() ? 'Les Artisans de' : 'The Artisans of' }}
+        <span class="highlight">{{ translation.isFr() ? 'l\'Excellence' : 'Excellence' }}</span>
+      </h2>
+      <div class="title-divider centered reveal"></div>
+      <p class="section-subtitle reveal">
+        {{ translation.isFr()
+          ? 'Une équipe passionnée et dévouée, unie par la vision de faire de DCS la référence des services premium à Dakar.'
+          : 'A passionate and dedicated team, united by the vision of making DCS the benchmark for premium services in Dakar.' }}
+      </p>
+    </div>
+
+    <div class="team-grid">
+      @for (member of team; track member.name; let i = $index) {
+        <div class="team-card reveal" [style.animation-delay]="(i * 0.1) + 's'">
+          <div class="team-avatar">
+            <span>{{ member.initials }}</span>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">{{ member.name }}</h3>
+            <p class="team-role">{{ getMemberRole(member) }}</p>
+            <p class="team-desc">{{ getMemberDesc(member) }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section bg-blue about-cta-section">
+  <div class="container-dcs">
+    <div class="about-cta-inner reveal">
+      <h2 class="about-cta-title">
+        {{ translation.isFr()
+          ? 'Rejoignez la Famille DCS'
+          : 'Join the DCS Family' }}
+      </h2>
+      <p class="about-cta-sub">
+        {{ translation.isFr()
+          ? 'Vous souhaitez collaborer avec nous ou en apprendre davantage sur nos services ? Notre équipe vous attend.'
+          : 'Want to collaborate with us or learn more about our services? Our team is waiting for you.' }}
+      </p>
+      <div class="about-cta-actions">
+        <a routerLink="/contact" class="btn-dcs btn-dcs-gold">
+          <i class="fa-solid fa-envelope"></i>
+          {{ translation.isFr() ? 'Nous Contacter' : 'Contact Us' }}
+        </a>
+        <a routerLink="/services" class="btn-dcs btn-dcs-outline">
+          <i class="fa-solid fa-grid-2"></i>
+          {{ translation.isFr() ? 'Voir nos Services' : 'See our Services' }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

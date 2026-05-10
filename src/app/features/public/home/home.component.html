@@ -1,0 +1,338 @@
+<!-- ===================================================
+     DCS HOME PAGE
+     =================================================== -->
+
+<!-- HERO SECTION -->
+<section class="hero-section">
+  <div class="hero-bg">
+    <div class="hero-overlay"></div>
+    <div class="hero-particles">
+      @for (p of [1,2,3,4,5,6]; track p) {
+        <div class="particle" [style.animation-delay]="(p * 0.8) + 's'"></div>
+      }
+    </div>
+  </div>
+
+  <div class="container-dcs hero-inner">
+    <div class="hero-content reveal">
+      <div class="hero-badge">
+        <i class="fa-solid fa-medal"></i>
+        {{ translation.isFr() ? 'Partenaire Local d\'Excellence — Dakar 2026' : 'Local Excellence Partner — Dakar 2026' }}
+      </div>
+      <h1 class="hero-title">
+        {{ translation.isFr() ? 'L\'Excellence' : 'Excellence' }}<br>
+        <span class="hero-title-gold">{{ translation.isFr() ? 'au Service de' : 'at the Service of' }}</span><br>
+        {{ translation.isFr() ? 'Votre Vision' : 'Your Vision' }}
+      </h1>
+      <p class="hero-subtitle">
+        {{ translation.isFr()
+          ? 'DCS Dawaamou Choukry Services — votre partenaire de confiance à Guédiawaye, Dakar. Café Touba, Audiovisuel, Décoration & Impression : nous transformons vos projets en réalités mémorables.'
+          : 'DCS Dawaamou Choukry Services — your trusted partner in Guédiawaye, Dakar. Café Touba, Audiovisual, Decoration & Printing: we transform your projects into memorable realities.' }}
+      </p>
+      <div class="hero-actions">
+        <a routerLink="/services" class="btn-dcs btn-dcs-gold">
+          <i class="fa-solid fa-grid-2"></i>
+          {{ translation.isFr() ? 'Nos Services' : 'Our Services' }}
+        </a>
+        <a routerLink="/contact" class="btn-dcs btn-dcs-outline">
+          <i class="fa-solid fa-paper-plane"></i>
+          {{ translation.isFr() ? 'Nous Contacter' : 'Contact Us' }}
+        </a>
+      </div>
+      <div class="hero-contact-bar">
+        <a href="https://wa.me/221784324753" target="_blank" class="hero-contact-item">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>+221 78 432 47 53</span>
+        </a>
+        <span class="hero-contact-sep">•</span>
+        <a href="mailto:contact@dcservices.sn" class="hero-contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>contact&#64;dcservices.sn</span>
+        </a>
+        <span class="hero-contact-sep">•</span>
+        <span class="hero-contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Guédiawaye, Dakar</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal-right">
+      <div class="hero-card-main">
+        <div class="hero-card-inner">
+          <div class="hero-icon-grid">
+            @for (service of services; track service.id) {
+              <div class="hero-service-pill" [style.background]="service.gradient">
+                <i class="fa-solid {{ service.icon }}"></i>
+                <span>{{ translation.isFr() ? service.titleFr : service.titleEn }}</span>
+              </div>
+            }
+          </div>
+          <div class="hero-stat-bar">
+            @for (stat of stats; track stat.value) {
+              <div class="hero-stat">
+                <span class="hero-stat-val">{{ stat.value }}</span>
+                <span class="hero-stat-label">{{ getStatLabel(stat) }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <div class="scroll-wheel"></div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<section class="stats-band bg-dark-blue">
+  <div class="container-dcs">
+    <div class="stats-grid">
+      @for (stat of stats; track stat.value) {
+        <div class="stat-item reveal">
+          <span class="stat-value">{{ stat.value }}</span>
+          <span class="stat-label">{{ getStatLabel(stat) }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section class="section bg-off-white" id="services">
+  <div class="container-dcs">
+    <div class="section-header centered">
+      <span class="section-badge reveal">
+        <i class="fa-solid fa-grid-2"></i>
+        {{ translation.isFr() ? 'Nos Expertises' : 'Our Expertise' }}
+      </span>
+      <h2 class="section-title reveal">
+        {{ translation.isFr() ? 'Quatre Services,' : 'Four Services,' }}<br>
+        <span class="highlight">{{ translation.isFr() ? 'Une Excellence' : 'One Excellence' }}</span>
+      </h2>
+      <div class="title-divider centered reveal"></div>
+      <p class="section-subtitle reveal">
+        {{ translation.isFr()
+          ? 'DCS vous accompagne avec une gamme complète de services premium, alliant savoir-faire local et standards internationaux.'
+          : 'DCS supports you with a complete range of premium services, combining local know-how with international standards.' }}
+      </p>
+    </div>
+
+    <div class="services-grid">
+      @for (service of services; track service.id; let i = $index) {
+        <div class="service-card reveal" [style.animation-delay]="(i * 0.1) + 's'">
+          <div class="service-card-icon" [style.background]="service.gradient">
+            <i class="fa-solid {{ service.icon }}"></i>
+          </div>
+          <div class="service-card-body">
+            <h3 class="service-card-title">{{ getServiceTitle(service) }}</h3>
+            <p class="service-card-subtitle">{{ getServiceSubtitle(service) }}</p>
+            <p class="service-card-desc">{{ getServiceDescription(service) }}</p>
+            <ul class="service-features">
+              @for (feat of service.features.slice(0, 3); track feat.labelFr) {
+                <li>
+                  <i class="fa-solid {{ feat.icon }}"></i>
+                  {{ translation.isFr() ? feat.labelFr : feat.labelEn }}
+                </li>
+              }
+            </ul>
+          </div>
+          <div class="service-card-footer">
+            <a routerLink="/services" class="btn-dcs btn-dcs-outline-blue">
+              {{ translation.isFr() ? 'En savoir plus' : 'Learn more' }}
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- WHY DCS SECTION -->
+<section class="section bg-dark-blue why-section">
+  <div class="container-dcs">
+    <div class="why-inner">
+      <div class="why-content reveal-left">
+        <span class="section-badge section-badge-dark">
+          <i class="fa-solid fa-star"></i>
+          {{ translation.isFr() ? 'Pourquoi DCS ?' : 'Why DCS?' }}
+        </span>
+        <h2 class="section-title text-white">
+          {{ translation.isFr() ? 'Votre Partenaire' : 'Your Local' }}<br>
+          <span class="highlight-gold">{{ translation.isFr() ? 'Local de Confiance' : 'Trusted Partner' }}</span>
+        </h2>
+        <div class="title-divider"></div>
+        <p class="section-subtitle text-muted-light">
+          {{ translation.isFr()
+            ? 'Depuis notre création, DCS s\'engage à offrir des services d\'excellence qui honorent la culture sénégalaise tout en répondant aux exigences des standards internationaux.'
+            : 'Since our founding, DCS has been committed to delivering excellent services that honor Senegalese culture while meeting international standards.' }}
+        </p>
+        <div class="why-ctas">
+          <a routerLink="/a-propos" class="btn-dcs btn-dcs-gold">
+            <i class="fa-solid fa-circle-info"></i>
+            {{ translation.isFr() ? 'Notre Histoire' : 'Our Story' }}
+          </a>
+          <a routerLink="/contact" class="btn-dcs btn-dcs-outline">
+            <i class="fa-solid fa-handshake"></i>
+            {{ translation.isFr() ? 'Collaborons' : 'Let\'s Collaborate' }}
+          </a>
+        </div>
+      </div>
+
+      <div class="why-features reveal-right">
+        <div class="why-feature-item">
+          <div class="why-feature-icon">
+            <i class="fa-solid fa-award"></i>
+          </div>
+          <div class="why-feature-text">
+            <h4>{{ translation.isFr() ? 'Excellence Certifiée' : 'Certified Excellence' }}</h4>
+            <p>{{ translation.isFr() ? 'Qualité premium dans chaque prestation, chaque détail compte.' : 'Premium quality in every service, every detail matters.' }}</p>
+          </div>
+        </div>
+        <div class="why-feature-item">
+          <div class="why-feature-icon">
+            <i class="fa-solid fa-clock"></i>
+          </div>
+          <div class="why-feature-text">
+            <h4>{{ translation.isFr() ? 'Ponctualité Garantie' : 'Guaranteed Punctuality' }}</h4>
+            <p>{{ translation.isFr() ? 'Respect des délais et des engagements, toujours.' : 'Deadlines and commitments respected, always.' }}</p>
+          </div>
+        </div>
+        <div class="why-feature-item">
+          <div class="why-feature-icon">
+            <i class="fa-solid fa-handshake"></i>
+          </div>
+          <div class="why-feature-text">
+            <h4>{{ translation.isFr() ? 'Partenariat Durable' : 'Lasting Partnership' }}</h4>
+            <p>{{ translation.isFr() ? 'Relations de confiance construites sur le long terme.' : 'Trust-based relationships built for the long term.' }}</p>
+          </div>
+        </div>
+        <div class="why-feature-item">
+          <div class="why-feature-icon">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <div class="why-feature-text">
+            <h4>{{ translation.isFr() ? 'Ancrage Local' : 'Local Roots' }}</h4>
+            <p>{{ translation.isFr() ? 'Fiers de notre culture Teranga, nous servons Dakar avec passion.' : 'Proud of our Teranga culture, we serve Dakar with passion.' }}</p>
+          </div>
+        </div>
+        <div class="why-feature-item">
+          <div class="why-feature-icon">
+            <i class="fa-solid fa-lightbulb"></i>
+          </div>
+          <div class="why-feature-text">
+            <h4>{{ translation.isFr() ? 'Innovation Continue' : 'Continuous Innovation' }}</h4>
+            <p>{{ translation.isFr() ? 'Toujours à la pointe, nous adoptons les meilleures pratiques.' : 'Always at the cutting edge, we adopt best practices.' }}</p>
+          </div>
+        </div>
+        <div class="why-feature-item">
+          <div class="why-feature-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="why-feature-text">
+            <h4>{{ translation.isFr() ? 'Satisfaction Assurée' : 'Satisfaction Guaranteed' }}</h4>
+            <p>{{ translation.isFr() ? 'Votre satisfaction est notre priorité absolue, sans compromis.' : 'Your satisfaction is our absolute priority, no compromise.' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS SECTION -->
+<section class="section testimonials-section">
+  <div class="container-dcs">
+    <div class="section-header centered">
+      <span class="section-badge reveal">
+        <i class="fa-solid fa-comments"></i>
+        {{ translation.isFr() ? 'Témoignages' : 'Testimonials' }}
+      </span>
+      <h2 class="section-title reveal">
+        {{ translation.isFr() ? 'Ils Nous Font' : 'They Trust' }}<br>
+        <span class="highlight">{{ translation.isFr() ? 'Confiance' : 'Us' }}</span>
+      </h2>
+      <div class="title-divider centered reveal"></div>
+    </div>
+
+    <div class="testimonials-carousel reveal">
+      <div class="testimonial-active">
+        <div class="testimonial-quote">
+          <i class="fa-solid fa-quote-left testimonial-quote-icon"></i>
+          <p class="testimonial-text">{{ getTestimonialText(testimonials[activeTestimonial]) }}</p>
+          <i class="fa-solid fa-quote-right testimonial-quote-icon testimonial-quote-right"></i>
+        </div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">
+            <span class="testimonial-avatar-initials">
+              {{ testimonials[activeTestimonial].name.charAt(0) }}
+            </span>
+          </div>
+          <div class="testimonial-info">
+            <strong class="testimonial-name">{{ testimonials[activeTestimonial].name }}</strong>
+            <span class="testimonial-role">{{ testimonials[activeTestimonial].role }}, {{ testimonials[activeTestimonial].company }}</span>
+            <div class="testimonial-stars">
+              @for (s of getStars(testimonials[activeTestimonial].rating); track $index) {
+                <i class="fa-solid fa-star"></i>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-dots">
+        @for (t of testimonials; track t.id; let i = $index) {
+          <button class="dot" [class.active]="i === activeTestimonial" (click)="setTestimonial(i)"></button>
+        }
+      </div>
+
+      <div class="testimonial-cards-preview">
+        @for (t of testimonials; track t.id; let i = $index) {
+          <div class="testi-card" [class.active]="i === activeTestimonial" (click)="setTestimonial(i)">
+            <div class="testi-card-avatar">{{ t.name.charAt(0) }}</div>
+            <div>
+              <div class="testi-card-name">{{ t.name }}</div>
+              <div class="testi-card-company">{{ t.company }}</div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section bg-blue">
+  <div class="container-dcs">
+    <div class="cta-inner reveal">
+      <div class="cta-content">
+        <span class="section-badge section-badge-dark">
+          <i class="fa-solid fa-rocket"></i>
+          {{ translation.isFr() ? 'Prêt à démarrer ?' : 'Ready to start?' }}
+        </span>
+        <h2 class="cta-title">
+          {{ translation.isFr()
+            ? 'Transformons Votre Projet en Réalité'
+            : 'Let\'s Transform Your Project into Reality' }}
+        </h2>
+        <p class="cta-subtitle">
+          {{ translation.isFr()
+            ? 'Contactez DCS dès aujourd\'hui pour un devis personnalisé et gratuit. Notre équipe vous répond dans les plus brefs délais.'
+            : 'Contact DCS today for a personalized free quote. Our team will respond as soon as possible.' }}
+        </p>
+      </div>
+      <div class="cta-actions">
+        <a href="https://wa.me/221784324753" target="_blank" class="btn-dcs btn-dcs-gold cta-wa-btn">
+          <i class="fa-brands fa-whatsapp"></i>
+          WhatsApp
+        </a>
+        <a routerLink="/contact" class="btn-dcs btn-dcs-outline">
+          <i class="fa-solid fa-envelope"></i>
+          {{ translation.isFr() ? 'Formulaire' : 'Contact Form' }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

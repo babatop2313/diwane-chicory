@@ -1,0 +1,80 @@
+<header class="navbar-dcs" [class.scrolled]="isScrolled()">
+  <div class="container-dcs navbar-inner">
+
+    <!-- Logo -->
+    <a routerLink="/accueil" class="navbar-logo" (click)="closeMenu()">
+      <div class="logo-emblem">
+        <span class="logo-icon"><i class="fa-solid fa-d"></i></span>
+      </div>
+      <div class="logo-text">
+        <span class="logo-main">DCS</span>
+        <span class="logo-sub">Dawaamou Choukry Services</span>
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="navbar-nav-desktop">
+      <ul class="nav-list">
+        @for (item of navItems; track item.route) {
+          <li class="nav-item">
+            <a [routerLink]="item.route"
+               routerLinkActive="active"
+               class="nav-link-dcs">
+              {{ getLabel(item) }}
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <!-- Actions -->
+    <div class="navbar-actions">
+      <!-- Language toggle -->
+      <button class="lang-toggle" (click)="translation.toggleLang()" type="button">
+        <span [class.active-lang]="translation.isFr()">FR</span>
+        <span class="lang-divider">|</span>
+        <span [class.active-lang]="!translation.isFr()">EN</span>
+      </button>
+
+      <!-- CTA -->
+      <a routerLink="/contact" class="btn-dcs btn-dcs-primary btn-nav-cta">
+        <i class="fa-solid fa-paper-plane"></i>
+        {{ translation.isFr() ? 'Devis Gratuit' : 'Free Quote' }}
+      </a>
+
+      <!-- Burger -->
+      <button class="menu-burger" (click)="toggleMenu()" type="button" [class.open]="menuOpen()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" [class.open]="menuOpen()">
+    <div class="mobile-menu-inner">
+      <ul class="mobile-nav-list">
+        @for (item of navItems; track item.route) {
+          <li>
+            <a [routerLink]="item.route"
+               routerLinkActive="active"
+               class="mobile-nav-link"
+               (click)="closeMenu()">
+              {{ getLabel(item) }}
+            </a>
+          </li>
+        }
+      </ul>
+      <div class="mobile-actions">
+        <button class="lang-toggle mobile-lang" (click)="translation.toggleLang()" type="button">
+          <span [class.active-lang]="translation.isFr()">Français</span>
+          <span class="lang-divider">|</span>
+          <span [class.active-lang]="!translation.isFr()">English</span>
+        </button>
+        <a routerLink="/contact" class="btn-dcs btn-dcs-gold w-100 justify-content-center" (click)="closeMenu()">
+          <i class="fa-solid fa-paper-plane"></i>
+          {{ translation.isFr() ? 'Demander un Devis' : 'Request a Quote' }}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
